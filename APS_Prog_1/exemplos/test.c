@@ -218,7 +218,7 @@ bail: _del(d);
  
 int main()
 {
-  int i, fd = open("Teste4_Texto.txt", O_RDONLY);
+  int i, fd = open("Teste3_Texto.txt", O_RDONLY);
  
   if (fd == -1) {
     fprintf(stderr, "Can't read file\n");

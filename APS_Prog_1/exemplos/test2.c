@@ -83,9 +83,9 @@ typedef struct {
 
 
 
-byte* encode(byte *in, int max_bits)
+byte* encode(byte *in, int max_bits)  // encoda os dados de dentro dos file
 {
-  int len = _len(in), bits = 9, next_shift = 512;
+  int len = _len(in), bits = 9, next_shift = 512;  // le os file e seta quantidade de bits e novos shifts usados
   ushort code, c, nc, next_code = M_NEW;
   lzw_enc_t *d = _new(lzw_enc_t, 512);
  

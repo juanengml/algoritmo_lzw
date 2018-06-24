@@ -8,7 +8,7 @@
 #include <sys/stat.h>
  
 
-
+int cout;
 
 void* memory_allocada(size_t item_size, size_t n_item)
 {
@@ -151,9 +151,23 @@ byte* encode(byte *in, int max_bits)  // encoda os dados de dentro dos file
 
 
 
+int bytesToInt(unsigned char* b, unsigned length)
+{
+  int val = 0;
+  int j = 0;
+  for (int i = length-1; i >= 0; --i)
+  {
+    val += (b[i] & 0xFF) << (8*j);
+    ++j;
+  }
+
+  return val;
+}
+
+
 int main()
 {
-  int i, file = open("Teste1_Texto.txt", O_RDONLY);
+  int i, file = open("Teste4_Texto.txt", O_RDONLY);
  
   if (file == -1) {
     fprintf(stderr, "Naum pode abrir os file lesk rsrsr\n");
@@ -172,6 +186,7 @@ int main()
  
   byte *enc = encode(ENTRADA, 9); // CHAMA FUNCAO PRA ENCODAR O DADO
   printf("encoded size: %d\n", _len(enc));
- 
+  cout << bytesToInt(byte, 40);
+  printf(cout); 
   return 0;
 }

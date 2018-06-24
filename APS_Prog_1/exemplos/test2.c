@@ -151,18 +151,6 @@ byte* encode(byte *in, int max_bits)  // encoda os dados de dentro dos file
 
 
 
-int bytesToInt(unsigned char* b, unsigned length)
-{
-  int val = 0;
-  int j = 0;
-  for (int i = length-1; i >= 0; --i)
-  {
-    val += (b[i] & 0xFF) << (8*j);
-    ++j;
-  }
-
-  return val;
-}
 
 
 int main()
@@ -181,12 +169,12 @@ int main()
   read(file, ENTRADA, st.st_size);
   _setsize(ENTRADA, st.st_size);
   close(file);
- 
-  printf("Entrada size:   %d\n", _len(ENTRADA));
- 
+  
   byte *enc = encode(ENTRADA, 9); // CHAMA FUNCAO PRA ENCODAR O DADO
   printf("encoded size: %d\n", _len(enc));
-  cout << bytesToInt(byte, 40);
-  printf(cout); 
+
   return 0;
+
+
+ _del(enc);
 }

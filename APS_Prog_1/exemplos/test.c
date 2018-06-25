@@ -32,8 +32,6 @@ void* mem_extend(void *m, size_t new_n)
 }
  
 
-
-
 inline void _clear(void *m)
 {
   size_t *x = (size_t*)m - 2;
@@ -63,15 +61,9 @@ typedef uint16_t ushort;
 #define M_NEW 258 /* new code index */
  
 
-
-
-
 typedef struct {
   ushort next[256];
 } lzw_enc_t;
- 
-
-
 
 
 typedef struct {
@@ -79,9 +71,6 @@ typedef struct {
   byte c;
 } lzw_dec_t;
  
-
-
-
 
 byte* lzw_encode(byte *in, int max_bits)
 {
@@ -137,7 +126,7 @@ byte* lzw_encode(byte *in, int max_bits)
   write_bits(code);
   write_bits(M_EOD);
   if (tmp) write_bits(tmp);
- 
+  
   _del(d);
  
   _setsize(out, out_len);
@@ -230,7 +219,7 @@ byte* lzw_decode(byte *in)
  
   /* might be ok, so just whine, don't be drastic */
   if (code != M_EOD) fputs("Bits did not end in EOD\n", stderr);
- 
+  
   _setsize(out, out_len);
 bail: _del(d);
   return out;
@@ -247,8 +236,9 @@ bail: _del(d);
 
 int main()
 {
-  int i, fd = open("Teste3_Texto.txt", O_RDONLY);
- 
+  int i, fd = open("Teste1_Texto.txt", O_RDONLY);
+  //printf(i);
+  // printf(fd);
   if (fd == -1) {
     fprintf(stderr, "Can't read file\n");
     return 1;
@@ -261,7 +251,7 @@ int main()
   read(fd, in, st.st_size);
   _setsize(in, st.st_size);
   close(fd);
- 
+    
   printf("input size:   %d\n", _len(in));
  
   byte *enc = lzw_encode(in, 9);
@@ -269,7 +259,7 @@ int main()
  
   byte *dec = lzw_decode(enc);
   printf("decoded size: %d\n", _len(dec));
- 
+  
   for (i = 0; i < _len(dec); i++)
     if (dec[i] != in[i]) {
       printf("bad decode at %d\n", i);
@@ -277,8 +267,14 @@ int main()
     }
  
   if (i == _len(dec)) printf("Decoded ok\n");
- 
- 
+  
+    printf("PERA\n");
+    printf(enc);
+    printf("PERA1\n");
+    printf(in); 
+    printf("PERA2\n");
+    printf(dec);
+    
   _del(in);
   _del(enc);
   _del(dec);

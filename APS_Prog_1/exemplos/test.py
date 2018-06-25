@@ -57,7 +57,7 @@ def decompress(compressed):
  
  
 # How to use:
-compressed = compress('wabbawabba')
+compressed = compress('ababbabcababba')
 print (compressed)
 decompressed = decompress(compressed)
 print (decompressed)

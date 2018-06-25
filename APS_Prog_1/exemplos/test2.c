@@ -172,9 +172,11 @@ int main()
   
   byte *enc = encode(ENTRADA, 9); // CHAMA FUNCAO PRA ENCODAR O DADO
   printf("encoded size: %d\n", _len(enc));
-
-  return 0;
-
+  printf(ENTRADA);
+  
 
  _del(enc);
+ 
+ return 0;
+ 
 }
